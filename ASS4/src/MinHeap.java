@@ -76,18 +76,8 @@ public class MinHeap
             swap(current,parent(current));
             current = parent(current);
         }	
-    }
- 
-    public void print()
-    {
-        for (int i = 1; i <= size / 2; i++ )
-        {
-            System.out.print(" PARENT : " + Heap[i] + " LEFT CHILD : " + Heap[2*i] 
-                + " RIGHT CHILD :" + Heap[2 * i  + 1]);
-            System.out.println();
-        } 
-    }
- 
+    } 
+     
     public void minHeap()
     {
         for (int pos = (size / 2); pos >= 1 ; pos--)
@@ -96,6 +86,22 @@ public class MinHeap
         }
     }
  
+    public boolean deleteMin()
+    {
+    	boolean result = false;
+    	
+    	return result;
+    }//returns true if min was removed successfully, false otherwise
+    
+    public int decreaseKey(int index, int value)
+    {
+    	int result = 0;
+    	
+    	
+    	return result;
+    }//decreases to value the priority of the item in the specified index
+    //and returns the index in the array where the item ended up
+    
     public int remove()
     {
         int popped = Heap[FRONT];
