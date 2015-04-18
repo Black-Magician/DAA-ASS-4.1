@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 public class Menu 
 {
 	 protected static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	 private static String checkString = "";
-	
+	 private static int checkString = 0;
+	 private static MinHeap MH= new MinHeap(100);
 	 public static void main(String args[]) throws IOException
 	 {
 		 boolean done = false;
@@ -22,11 +22,36 @@ public class Menu
 					 + "\n6. Exit program.");
 			 System.out.println("Make your menu selection now: ");
 			 
-			 checkString = br.readLine();
+			 checkString = Integer.parseInt(br.readLine());
 			 System.out.println(checkString);
 			 switch (checkString)
 			 {
+			 case 1:
+			 if(MH.isEmpty()==true)
+				 System.out.println("Heap is empty");
 			
+			 else 
+				 System.out.println("Heap is not empty");
+				 
+			 break;
+			 case 2:
+				 System.out.println("input integer to insert:");
+				 MH.insert(Integer.parseInt(br.readLine()));
+					 
+				 break;
+			 case 3:
+				 MH.deleteMin();
+				 
+				 break;
+			 case 4:
+				 
+				 
+				 break;
+			 case 5:
+				 System.out.println(MH.DisplayArray());
+				 
+				 break;
+				 
 			 }//end switch
 			 
 		 }
