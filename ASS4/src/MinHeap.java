@@ -1,4 +1,3 @@
-
 public class MinHeap
 {
 	private int[] Heap;
@@ -87,10 +86,13 @@ public class MinHeap
     }
  
     public boolean deleteMin()
-    {
-    	boolean result = false;
+    {// swap the last node in the heap for the first, deleting the first. set the last node to 0, to avoid copying it. decrement size. trickle down.
+    	Heap[1]= Heap[size];
+    	Heap[size]= 0;
+    	size--;
+    	trickleDown(1);
     	
-    	return result;
+    	return true;
     }//returns true if min was removed successfully, false otherwise
     
     public int decreaseKey(int index, int value)
@@ -109,6 +111,19 @@ public class MinHeap
         trickleDown(FRONT);
         return popped;
     }
-	
+    public boolean isEmpty()
+    {
+    	if (size==0)
+    		return true;
+    	return false;
+    }
+	public String DisplayArray()
+	{ String rString= "The Array Contains:";
+		for (int i=1;i<this.size+1;i++)
+		{
+			rString =(rString +" "+ Heap[i] );
+		}
+		return rString;
+	}
 	
 }
