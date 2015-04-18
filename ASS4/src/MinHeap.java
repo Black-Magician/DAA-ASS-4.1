@@ -1,7 +1,7 @@
 public class MinHeap
 {
 	private int[] Heap;
-    private int size;
+    private int numItems;
     private int maxsize;
  
     private static final int FRONT = 1;
@@ -9,8 +9,8 @@ public class MinHeap
     public MinHeap(int maxsize)
     {
         this.maxsize = maxsize;
-        this.size = 0;
-        Heap = new int[this.maxsize + 1];
+        numItems = 0;
+        Heap = new int[maxsize + 1];
         Heap[0] = Integer.MIN_VALUE;
     }
  
@@ -31,20 +31,21 @@ public class MinHeap
  
     private boolean isLeaf(int pos)
     {
-        if (pos >=  (size / 2)  &&  pos <= size)
+        if (pos >=  (numItems / 2)  &&  pos <= numItems)
         { 
             return true;
         }
         return false;
     }
  
-    private void swap(int fpos, int spos)
+    private int swap(int first, int second)
     {
-        int tmp;
-        tmp = Heap[fpos];
-        Heap[fpos] = Heap[spos];
-        Heap[spos] = tmp;
-    }
+        int swap;
+        swap = Heap[first];
+        Heap[first] = Heap[second];
+        Heap[second] = swap;
+        return second;
+    }//returns the index that the item was placed into
  
     private void trickleDown(int pos)
     {
@@ -67,8 +68,8 @@ public class MinHeap
  
     public void insert(int element)
     {
-        Heap[++size] = element;
-        int current = size;
+        Heap[++numItems] = element;
+        int current = numItems;
  
         while (Heap[current] < Heap[parent(current)])
         {
@@ -79,7 +80,7 @@ public class MinHeap
      
     public void minHeap()
     {
-        for (int pos = (size / 2); pos >= 1 ; pos--)
+        for (int pos = (numItems / 2); pos >= 1 ; pos--)
         {
             trickleDown(pos);
         }
@@ -87,16 +88,20 @@ public class MinHeap
  
     public boolean deleteMin()
     {// swap the last node in the heap for the first, deleting the first. set the last node to 0, to avoid copying it. decrement size. trickle down.
-    	Heap[1]= Heap[size];
-    	Heap[size]= 0;
-    	size--;
+    	Heap[1]= Heap[numItems];
+    	Heap[numItems]= 0;
+    	numItems--;
     	trickleDown(1);
     	
     	return true;
     }//returns true if min was removed successfully, false otherwise
     
-    public int decreaseKey(int index, int value)
+    public int decreaseKey(int index, int value) throws HeapException
     {
+    	if((index < 0 || index > numItems)|| value < 0)
+    	{
+    		throw new HeapException("input error on decreaseKey");
+    	}
     	int result = 0;
     	
     	
@@ -107,19 +112,20 @@ public class MinHeap
     public int remove()
     {
         int popped = Heap[FRONT];
-        Heap[FRONT] = Heap[size--]; 
+        Heap[FRONT] = Heap[numItems--]; 
         trickleDown(FRONT);
         return popped;
     }
     public boolean isEmpty()
     {
-    	if (size==0)
+    	if (numItems==0)
     		return true;
     	return false;
     }
 	public String DisplayArray()
-	{ String rString= "The Array Contains:";
-		for (int i=1;i<this.size+1;i++)
+	{ 
+		String rString= "The Array Contains:";
+		for (int i=1;i<this.numItems+1;i++)
 		{
 			rString =(rString +" "+ Heap[i] );
 		}
