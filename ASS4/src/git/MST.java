@@ -11,9 +11,9 @@ public class MST
 	 protected static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	 private static String checkString = "";
 	 private static MinHeap heap;
-	public static void main(String args[])
+	public static void main(String args[])throws IOException
 	{
-		
+		readInput();
 	}
 	
 	public static void readInput() throws IOException

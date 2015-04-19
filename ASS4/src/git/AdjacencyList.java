@@ -14,25 +14,8 @@ public class AdjacencyList
 	{
 		return AL;
 	}
-	
-	public Node getNextatVertex(int index)
-	{
-		return AL[index].getNextNode();
-	}
-	
 	public Node getVertexatIndex(int index)
 	{
 		return AL[index];
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

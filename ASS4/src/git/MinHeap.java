@@ -2,18 +2,16 @@ package git;
 
 public class MinHeap
 {
-	private int[] Heap;
+	private int[] minHeap;
     private int numItems;
-    private int maxsize;
  
     private static final int FRONT = 1;
  
     public MinHeap(int maxsize)
     {
-        this.maxsize = maxsize;
         numItems = 0;
-        Heap = new int[maxsize + 1];
-        Heap[0] = Integer.MIN_VALUE;
+        minHeap = new int[maxsize + 1];
+        minHeap[0] = Integer.MIN_VALUE;
     }
  
     private int parent(int pos)
@@ -43,37 +41,38 @@ public class MinHeap
     private int swap(int first, int second)
     {
         int swap;
-        swap = Heap[first];
-        Heap[first] = Heap[second];
-        Heap[second] = swap;
+        swap = minHeap[first];
+        minHeap[first] = minHeap[second];
+        minHeap[second] = swap;
         return second;
     }//returns the index that the item was placed into
  
-    private void trickleDown(int pos)
+    private void trickleDown(int index)
     {
-        if (!isLeaf(pos))
+        if (!isLeaf(index))
         { 
-            if ( Heap[pos] > Heap[leftChild(pos)]  || Heap[pos] > Heap[rightChild(pos)])
+            if ( minHeap[index] > minHeap[leftChild(index)]  
+            		|| minHeap[index] > minHeap[rightChild(index)])
             {
-                if (Heap[leftChild(pos)] < Heap[rightChild(pos)])
+                if (minHeap[leftChild(index)] < minHeap[rightChild(index)])
                 {
-                    swap(pos, leftChild(pos));
-                    trickleDown(leftChild(pos));
+                    swap(index, leftChild(index));
+                    trickleDown(leftChild(index));
                 }else
                 {
-                    swap(pos, rightChild(pos));
-                    trickleDown(rightChild(pos));
+                    swap(index, rightChild(index));
+                    trickleDown(rightChild(index));
                 }
             }
         }
     }
  
-    public void insert(int element)
+    public void insert(int element) 
     {
-        Heap[++numItems] = element;
+        minHeap[++numItems] = element;
         int current = numItems;
  
-        while (Heap[current] < Heap[parent(current)])
+        while (minHeap[current] < minHeap[parent(current)])
         {
             swap(current,parent(current));
             current = parent(current);
@@ -90,8 +89,8 @@ public class MinHeap
  
     public boolean deleteMin()
     {// swap the last node in the heap for the first, deleting the first. set the last node to 0, to avoid copying it. decrement size. trickle down.
-    	Heap[1]= Heap[numItems];
-    	Heap[numItems]= 0;
+    	minHeap[1]= minHeap[numItems];
+    	minHeap[numItems]= 0;
     	numItems--;
     	trickleDown(1);
     	
@@ -104,20 +103,14 @@ public class MinHeap
     	{
     		throw new HeapException("input error on decreaseKey");
     	}
+    	minHeap[index] = value;
+    	//i really don't know how to work this method could you look at this matt -- joe
     	int result = 0;
     	
     	
     	return result;
     }//decreases to value the priority of the item in the specified index
     //and returns the index in the array where the item ended up
-    
-    public int remove()
-    {
-        int popped = Heap[FRONT];
-        Heap[FRONT] = Heap[numItems--]; 
-        trickleDown(FRONT);
-        return popped;
-    }
     public boolean isEmpty()
     {
     	if (numItems==0)
@@ -129,7 +122,7 @@ public class MinHeap
 		String rString= "The Array Contains:";
 		for (int i=1;i<this.numItems+1;i++)
 		{
-			rString =(rString +" "+ Heap[i] );
+			rString =(rString +" "+ minHeap[i] );
 		}
 		return rString;
 	}

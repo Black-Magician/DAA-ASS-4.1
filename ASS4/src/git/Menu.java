@@ -42,7 +42,14 @@ public class Menu
 					 
 				 break;
 			 case 3:
-				 MH.deleteMin();
+				 if(MH.deleteMin())
+				 {
+					 System.out.println("You have deleted the minimum value");
+				 }
+				 else
+				 {
+					 System.out.println("You have not deleted the minimum value");
+				 }
 				 
 				 break;
 			 case 4:

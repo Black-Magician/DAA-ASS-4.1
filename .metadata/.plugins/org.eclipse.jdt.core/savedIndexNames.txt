@@ -14,7 +14,6 @@ INDEX VERSION 1.127+C:\Users\Joe\Documents\GitHub\DAA-ASS-4.1\.metadata\.plugins
 3454846027.index
 1246419929.index
 89519873.index
-3333521476.index
 3146765149.index
 1242930374.index
 394847236.index
