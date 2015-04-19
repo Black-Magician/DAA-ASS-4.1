@@ -57,3 +57,15 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.xml
+*.index
+*.lock
+*.log
+*.ini
+*.history
+.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+*.png
+*.repositories
+*.gen
+*.nrm
+*.fdt
