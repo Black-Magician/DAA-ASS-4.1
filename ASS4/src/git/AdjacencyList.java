@@ -18,4 +18,14 @@ public class AdjacencyList
 	{
 		return AL[index];
 	}
+	public void addVertex(int index, int value, int weight)
+	{
+		Node temp = getVertexatIndex(index);
+		while(temp.getNextNode()!=null)
+		{
+			temp = temp.getNextNode();
+		}
+		Node newNode = new Node(value,weight);
+		temp.setNextNode(newNode);
+	}
 }
