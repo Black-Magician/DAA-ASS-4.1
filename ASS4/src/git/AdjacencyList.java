@@ -1,5 +1,11 @@
 package git;
-
+/*
+ * this class just adds the basic functionality of an adjacency list that we would
+ * need to make Prim's algorithm of making a Minimum spanning tree work
+ * each Vertex in the AL is called by a node that holds the vertex that the index is connected to
+ * i.e. index 0 refers to vertex 0 and when adding a new node to the list, we would use the value
+ * 1 to refer to it within the node.
+ */
 
 public class AdjacencyList
 {
@@ -10,6 +16,13 @@ public class AdjacencyList
 		AL = new Node[numVerticies];
 	}
 	
+	private void fillList()
+	{
+		
+		for(int i = 0;i< AL.length;i++){
+			AL[i] = new Node(i,0);
+		}
+	}
 	public Node[] getAdList()
 	{
 		return AL;
@@ -20,12 +33,29 @@ public class AdjacencyList
 	}
 	public void addVertex(int index, int value, int weight)
 	{
-		Node temp = getVertexatIndex(index);
-		while(temp.getNextNode()!=null)
+		Node temp = AL[index];
+		while(temp.getNextNode() != null)//something is going wrong here and I have no idea what it is
+			//it keeps giving me a null pointer exception and i don't know how to fix it
 		{
 			temp = temp.getNextNode();
 		}
 		Node newNode = new Node(value,weight);
 		temp.setNextNode(newNode);
+	}
+	
+	public String toString()
+	{
+		String result = "";
+		Node temp = null;
+		for(int i = 0;i < AL.length;i++)
+		{
+			temp = getVertexatIndex(i);
+			while(temp != null)
+			{
+				result += "V1: " + i + " V2: " + temp.getValue() + " Weight: " + temp.getWeight() + "\n";
+				temp = temp.getNextNode();
+			}
+		}
+		return result;
 	}
 }
