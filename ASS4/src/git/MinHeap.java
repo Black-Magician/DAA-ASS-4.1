@@ -78,7 +78,12 @@ public class MinHeap
         minHeap[numItems] = item;
         int current = numItems;
         if(!isEmpty())
+<<<<<<< HEAD
         { numItems++;
+=======
+        {
+        	numItems++;
+>>>>>>> origin/master
         	while (minHeap[current].getWeight() < minHeap[parent(current)].getWeight())
         	{
         		swap(current,parent(current));
@@ -91,6 +96,7 @@ public class MinHeap
         	minHeap[0] = item;
         	numItems++;
         }
+        
     } 
      
      
