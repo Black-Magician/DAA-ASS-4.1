@@ -67,9 +67,9 @@ public class MinHeap
         }
     }
  
-    public void insert(int element) 
+    public void insert(int item) 
     {
-        minHeap[++numItems] = element;
+        minHeap[++numItems] = item;
         int current = numItems;
  
         while (minHeap[current] < minHeap[parent(current)])
@@ -86,7 +86,7 @@ public class MinHeap
             trickleDown(pos);
         }
     }
- 
+     
     public boolean deleteMin()
     {// swap the last node in the heap for the first, deleting the first. set the last node to 0, to avoid copying it. decrement size. trickle down.
     	minHeap[1]= minHeap[numItems];

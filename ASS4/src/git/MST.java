@@ -15,11 +15,6 @@ public class MST
 	 public static void main(String args[])throws IOException
 	{
 		readInput();
-		
-		
-		
-		
-		
 		System.out.println(AL.toString());
 	}
 	//this method reads in the input to form an adjacency list of all the vertices
@@ -41,14 +36,12 @@ public class MST
 	
 		numEdges = Integer.parseInt(checkString);
 		
-		for(int i = 2* numEdges;i > 0 ; i++)
+		for(int i = numEdges;i > 0 ; i--)
 		{
 			vertexOne = Integer.parseInt(br.readLine());
 			vertexTwo = Integer.parseInt(br.readLine());
-			weight = Integer.parseInt(br.readLine());				
+			weight = Integer.parseInt(br.readLine());
 			AL.addVertex(vertexOne, vertexTwo, weight);
 		}
 	}
-	
-	
 }

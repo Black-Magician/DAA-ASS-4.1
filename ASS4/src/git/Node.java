@@ -40,6 +40,11 @@ public class Node
 		this.nextNode = nextNode;
 	}
 	
-	
+	public String toString()
+	{
+		String result;
+		result = "Vertex: " + value + " Weight: " + weight;
+		return result;
+	}
 	
 }

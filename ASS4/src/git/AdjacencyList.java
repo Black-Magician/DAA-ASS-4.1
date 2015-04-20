@@ -36,8 +36,7 @@ public class AdjacencyList
 	public void addVertex(int index, int value, int weight)
 	{
 		Node temp = AL[index].getHead();
-		while(temp.getNextNode() != null)//something is going wrong here and I have no idea what it is
-			//it keeps giving me a null pointer exception and i don't know how to fix it
+		while(temp.getNextNode() != null)
 		{
 			temp = temp.getNextNode();
 		}
