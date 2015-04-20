@@ -16,6 +16,7 @@ public class MST
 	{
 		readInput();
 		System.out.println(AL.toString());
+		System.out.print(mh.DisplayArray());
 	}
 	//this method reads in the input to form an adjacency list of all the vertices
 	//this includes the weights of the edges that form in between the two vertices
@@ -42,6 +43,8 @@ public class MST
 			vertexTwo = Integer.parseInt(br.readLine());
 			weight = Integer.parseInt(br.readLine());
 			AL.addVertex(vertexOne, vertexTwo, weight);
+			Node n = new Node(vertexOne,weight,2147483647);
+			mh.insert(n);
 		}
 	}
 	

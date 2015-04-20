@@ -14,6 +14,13 @@ public class Node
 		this.weight = weight;
 		nextNode = null;
 	}
+	public Node(int key,int weight,int value)
+	{
+		this.key = key;
+		this.weight = weight;
+		this.value = value;
+		nextNode = null;
+	}
 
 	
 	public int getKey() {
