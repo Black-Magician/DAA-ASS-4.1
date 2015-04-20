@@ -17,7 +17,6 @@ public class MinHeap
     {
         numItems = 0;
         minHeap = new Node[maxsize + 1];
-        minHeap[0].setWeight(0);
     }
  //=========================================================
     private int parent(int pos)
@@ -78,12 +77,18 @@ public class MinHeap
     {
         minHeap[++numItems] = item;
         int current = numItems;
- 
-        while (minHeap[current].getWeight() < minHeap[parent(current)].getWeight())
+        if(!isEmpty())
         {
-            swap(current,parent(current));
-            current = parent(current);
-        }	
+        	while (minHeap[current].getWeight() < minHeap[parent(current)].getWeight())
+        	{
+        		swap(current,parent(current));
+        		current = parent(current);
+        	}
+        }
+        else
+        {
+        	minHeap[0] = item;
+        }
     } 
      
      
@@ -135,7 +140,7 @@ public class MinHeap
 	public String DisplayArray()
 	{ 
 		String rString= "The Array Contains:";
-		for (int i=1;i<this.numItems+1;i++)
+		for (int i=0;i<this.numItems+1;i++)
 		{
 			rString =(rString +" "+ minHeap[i] );
 		}

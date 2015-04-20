@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class Menu 
 {
 	 private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	 private static int checkString = 0;
 	 private static MinHeap MH= new MinHeap(100);
+
 	 public static void main(String args[]) throws IOException
 	 {
 		 boolean done = false;
@@ -55,11 +55,13 @@ public class Menu
 				 System.out.println("What is the new key of the Node?");
 				 int nw = Integer.parseInt(br.readLine());
 				 Node node = MH.decreaseKey(in,nw);
-				 
+				 System.out.println(node.toString());
 				 break;
 			 case 5:
 				 System.out.println(MH.DisplayArray());
 				 break;
+			 case 6: 
+				 done = true;
 				 
 			 }//end switch
 			 
