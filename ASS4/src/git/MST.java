@@ -45,7 +45,6 @@ public class MST
 		}
 	}
 	
-	private 
 	
 	
 	
