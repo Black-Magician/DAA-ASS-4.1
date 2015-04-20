@@ -9,31 +9,33 @@ package git;
 
 public class AdjacencyList
 {
-	private Node[] AL;	
+	private List[] AL;	
 	
 	public AdjacencyList(int numVerticies)
 	{
-		AL = new Node[numVerticies];
+		AL = new List[numVerticies];
+		fillList();
 	}
 	
 	private void fillList()
 	{
 		
-		for(int i = 0;i< AL.length;i++){
-			AL[i] = new Node(i,0);
+		for(int i = 0;i< AL.length;i++)
+		{
+			AL[i] = new List(new Node(i,0));
 		}
 	}
-	public Node[] getAdList()
+	public List[] getAdList()
 	{
 		return AL;
 	}
 	public Node getVertexatIndex(int index)
 	{
-		return AL[index];
+		return AL[index].getHead();
 	}
 	public void addVertex(int index, int value, int weight)
 	{
-		Node temp = AL[index];
+		Node temp = AL[index].getHead();
 		while(temp.getNextNode() != null)//something is going wrong here and I have no idea what it is
 			//it keeps giving me a null pointer exception and i don't know how to fix it
 		{
