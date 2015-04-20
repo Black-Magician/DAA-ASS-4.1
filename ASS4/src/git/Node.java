@@ -5,6 +5,7 @@ public class Node
 {
 	private int key;
 	private int weight;
+	private int value;
 	private Node nextNode;
 	
 	public Node(int key,int weight)
@@ -14,23 +15,36 @@ public class Node
 		nextNode = null;
 	}
 
-	public int getValue() {
+	
+	public int getKey() {
 		return key;
 	}
-	
-	public int getWeight()
-	{
+
+
+	public void setKey(int key) {
+		this.key = key;
+	}
+
+
+	public int getWeight() {
 		return weight;
 	}
-	
-	public void setWeight(int weight)
-	{
+
+
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 
-	public void setValue(int value) {
-		this.key = value;
+
+	public int getValue() {
+		return value;
 	}
+
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
 
 	public Node getNextNode() {
 		return nextNode;

@@ -10,7 +10,7 @@ public class MST
 
 	 protected static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	 private static String checkString = "";
-	 private static MinHeap heap;
+	 private static MinHeap mh;
 	 private static AdjacencyList AL;
 	 public static void main(String args[])throws IOException
 	{
@@ -44,6 +44,10 @@ public class MST
 			AL.addVertex(vertexOne, vertexTwo, weight);
 		}
 	}
+	
+	private 
+	
+	
 	
 	
 }
