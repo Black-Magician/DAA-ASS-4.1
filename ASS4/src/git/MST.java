@@ -44,4 +44,6 @@ public class MST
 			AL.addVertex(vertexOne, vertexTwo, weight);
 		}
 	}
+	
+	
 }

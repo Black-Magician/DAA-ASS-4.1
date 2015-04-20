@@ -37,28 +37,28 @@ public class Menu
 				 
 			 break;
 			 case 2:
-				 System.out.println("input integer to insert:");
-				 MH.insert(Integer.parseInt(br.readLine()));
+				 System.out.println("input Node to insert:");
+				 System.out.println("What is the key of the Node?");
+				 int v = Integer.parseInt(br.readLine());
+				 System.out.println("What is the weight of the Node?");
+				 int w = Integer.parseInt(br.readLine());	 
+				 MH.insert(new Node (v,w));
 					 
 				 break;
 			 case 3:
-				 if(MH.deleteMin())
-				 {
-					 System.out.println("You have deleted the minimum value");
-				 }
-				 else
-				 {
-					 System.out.println("You have not deleted the minimum value");
-				 }
-				 
+				 Node n = (Node) MH.deleteMin();
+				 System.out.println("You have removed " + n.toString());
 				 break;
 			 case 4:
-				 
+				 System.out.println("What is the index of the Node?");
+				 int in = Integer.parseInt(br.readLine());
+				 System.out.println("What is the new key of the Node?");
+				 int nw = Integer.parseInt(br.readLine());
+				 Node node = MH.decreaseKey(in,nw);
 				 
 				 break;
 			 case 5:
 				 System.out.println(MH.DisplayArray());
-				 
 				 break;
 				 
 			 }//end switch

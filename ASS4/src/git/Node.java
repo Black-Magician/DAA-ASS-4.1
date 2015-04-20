@@ -3,19 +3,19 @@ package git;
 
 public class Node
 {
-	private int value;
+	private int key;
 	private int weight;
 	private Node nextNode;
 	
-	public Node(int value,int weight)
+	public Node(int key,int weight)
 	{
-		this.value = value;
+		this.key = key;
 		this.weight = weight;
 		nextNode = null;
 	}
 
 	public int getValue() {
-		return value;
+		return key;
 	}
 	
 	public int getWeight()
@@ -29,7 +29,7 @@ public class Node
 	}
 
 	public void setValue(int value) {
-		this.value = value;
+		this.key = value;
 	}
 
 	public Node getNextNode() {
@@ -43,7 +43,7 @@ public class Node
 	public String toString()
 	{
 		String result;
-		result = "Vertex: " + value + " Weight: " + weight;
+		result = "Vertex: " + key + " Weight: " + weight;
 		return result;
 	}
 	

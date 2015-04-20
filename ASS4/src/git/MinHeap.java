@@ -2,18 +2,24 @@ package git;
 
 public class MinHeap
 {
-	private int[] minHeap;
+	private Node[] minHeap;
     private int numItems;
  
-    private static final int FRONT = 1;
- 
+    public void minHeap()
+    {
+        for (int pos = (numItems / 2); pos >= 1 ; pos--)
+        {
+            trickleDown(pos);
+        }
+    }
+    
     public MinHeap(int maxsize)
     {
         numItems = 0;
-        minHeap = new int[maxsize + 1];
-        minHeap[0] = Integer.MIN_VALUE;
+        minHeap = new Node[maxsize + 1];
+        minHeap[0].setWeight(0);
     }
- 
+ //=========================================================
     private int parent(int pos)
     {
         return pos / 2;
@@ -28,7 +34,7 @@ public class MinHeap
     {
         return (2 * pos) + 1;
     }
- 
+
     private boolean isLeaf(int pos)
     {
         if (pos >=  (numItems / 2)  &&  pos <= numItems)
@@ -37,10 +43,11 @@ public class MinHeap
         }
         return false;
     }
- 
+  //=========================================================
+    
     private int swap(int first, int second)
     {
-        int swap;
+        Node swap;
         swap = minHeap[first];
         minHeap[first] = minHeap[second];
         minHeap[second] = swap;
@@ -51,10 +58,10 @@ public class MinHeap
     {
         if (!isLeaf(index))
         { 
-            if ( minHeap[index] > minHeap[leftChild(index)]  
-            		|| minHeap[index] > minHeap[rightChild(index)])
+            if ( minHeap[index].getWeight() > minHeap[leftChild(index)].getWeight()  
+            		|| minHeap[index].getWeight() > minHeap[rightChild(index)].getWeight())
             {
-                if (minHeap[leftChild(index)] < minHeap[rightChild(index)])
+                if (minHeap[leftChild(index)].getWeight() < minHeap[rightChild(index)].getWeight())
                 {
                     swap(index, leftChild(index));
                     trickleDown(leftChild(index));
@@ -67,56 +74,64 @@ public class MinHeap
         }
     }
  
-    public void insert(int item) 
+    public void insert(Node item) 
     {
         minHeap[++numItems] = item;
         int current = numItems;
  
-        while (minHeap[current] < minHeap[parent(current)])
+        while (minHeap[current].getWeight() < minHeap[parent(current)].getWeight())
         {
             swap(current,parent(current));
             current = parent(current);
         }	
     } 
      
-    public void minHeap()
-    {
-        for (int pos = (numItems / 2); pos >= 1 ; pos--)
-        {
-            trickleDown(pos);
-        }
-    }
      
-    public boolean deleteMin()
+    public Object deleteMin() throws HeapException
     {// swap the last node in the heap for the first, deleting the first. set the last node to 0, to avoid copying it. decrement size. trickle down.
-    	minHeap[1]= minHeap[numItems];
-    	minHeap[numItems]= 0;
+    	Object item = (Object) minHeap[0];
+    	minHeap[0] =minHeap[numItems];
+    	minHeap[numItems] = null;
+    	
     	numItems--;
-    	trickleDown(1);
+    	trickleDown(0);
     	
-    	return true;
-    }//returns true if min was removed successfully, false otherwise
-    
-    public int decreaseKey(int index, int value) throws HeapException
+    	return item;
+    }
+    private int bubbleUp(int index)
     {
-    	if((index < 0 || index > numItems)|| value < 0)
+    	while(index>1 && this.minHeap[index].getWeight() < minHeap[parent(index)].getWeight())
     	{
-    		throw new HeapException("input error on decreaseKey");
+    		swap(index,parent(index));
+    		index = parent(index);
     	}
-    	minHeap[index] = value;
-    	//i really don't know how to work this method could you look at this matt -- joe
-    	int result = 0;
-    	
-    	
+    	return index;
+    }
+    
+    
+    public Node decreaseKey(int index, int weight) 
+    {
+    	Node result = null;
+    	Node temp = minHeap[index];
+    	temp.setWeight(weight);
+    	result = minHeap[bubbleUp(index)];
     	return result;
     }//decreases to value the priority of the item in the specified index
     //and returns the index in the array where the item ended up
+    
     public boolean isEmpty()
     {
     	if (numItems==0)
     		return true;
     	return false;
     }
+    
+    public int getValue(int vertex)
+    {
+    	return minHeap[vertex].getValue();
+    }
+    
+    
 	public String DisplayArray()
 	{ 
 		String rString= "The Array Contains:";
