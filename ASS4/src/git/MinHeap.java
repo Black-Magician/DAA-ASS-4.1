@@ -75,10 +75,11 @@ public class MinHeap
  
     public void insert(Node item) 
     {
-        minHeap[++numItems] = item;
+        minHeap[numItems] = item;
         int current = numItems;
         if(!isEmpty())
         {
+        	numItems++;
         	while (minHeap[current].getWeight() < minHeap[parent(current)].getWeight())
         	{
         		swap(current,parent(current));
@@ -88,7 +89,9 @@ public class MinHeap
         else
         {
         	minHeap[0] = item;
+        	numItems++;
         }
+        
     } 
      
      
